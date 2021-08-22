@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:icon="@drawable/app_pict"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/app_picture"
+        android:roundIcon="@drawable/app_pict"
         android:supportsRtl="true"
         android:theme="@style/Theme.WaifuPictures">
         <service

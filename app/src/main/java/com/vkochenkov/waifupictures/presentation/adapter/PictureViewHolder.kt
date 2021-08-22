@@ -13,10 +13,9 @@ import com.vkochenkov.waifupictures.data.model.PictureItem
 class PictureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageView: ImageView = itemView.findViewById(R.id.iv_item)
 
-    //todo good placeholders
     private val glideOptions: RequestOptions = RequestOptions()
         .centerCrop()
-        .placeholder(R.drawable.ic_baseline_image_24)
+        .placeholder(R.drawable.loading_background)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
 
     fun bind(item: PictureItem) {
