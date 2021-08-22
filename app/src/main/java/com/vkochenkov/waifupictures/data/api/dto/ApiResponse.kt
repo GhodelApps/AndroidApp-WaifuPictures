@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.data.api
+package com.vkochenkov.waifupictures.data.api.dto
 
 import com.google.gson.annotations.SerializedName
 

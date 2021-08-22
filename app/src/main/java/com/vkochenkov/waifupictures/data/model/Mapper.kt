@@ -1,6 +1,6 @@
 package com.vkochenkov.waifupictures.data.model
 
-import com.vkochenkov.waifupictures.data.api.ApiResponse
+import com.vkochenkov.waifupictures.data.api.dto.ApiResponse
 import java.util.ArrayList
 
 object Mapper {

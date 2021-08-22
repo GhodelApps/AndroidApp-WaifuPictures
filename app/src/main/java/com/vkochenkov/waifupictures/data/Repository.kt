@@ -1,6 +1,6 @@
 package com.vkochenkov.waifupictures.data
 
-import com.vkochenkov.waifupictures.data.api.ApiRequest
+import com.vkochenkov.waifupictures.data.api.dto.ApiRequest
 import com.vkochenkov.waifupictures.data.api.ApiService
 import com.vkochenkov.waifupictures.data.db.FavouriteImagesDao
 import com.vkochenkov.waifupictures.data.model.PictureItem

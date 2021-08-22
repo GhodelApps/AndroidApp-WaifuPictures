@@ -1,5 +1,7 @@
 package com.vkochenkov.waifupictures.data.api
 
+import com.vkochenkov.waifupictures.data.api.dto.ApiRequest
+import com.vkochenkov.waifupictures.data.api.dto.ApiResponse
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.waifupictures.data.Repository
-import com.vkochenkov.waifupictures.data.api.ApiRequest
+import com.vkochenkov.waifupictures.data.api.dto.ApiRequest
 import com.vkochenkov.waifupictures.data.api.NetworkState
-import com.vkochenkov.waifupictures.data.api.ApiResponse
+import com.vkochenkov.waifupictures.data.api.dto.ApiResponse
 import com.vkochenkov.waifupictures.data.api.NetworkStorage
 import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.data.model.Mapper
