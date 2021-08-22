@@ -1,6 +1,5 @@
 package com.vkochenkov.waifupictures.presentation.fragment
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,13 +16,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.api.NetworkState
-import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.di.App.Companion.IMAGE_ITEM
-import com.vkochenkov.waifupictures.presentation.activity.PictureActivity
-import com.vkochenkov.waifupictures.presentation.adapter.PictureViewHolder
 import com.vkochenkov.waifupictures.presentation.adapter.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListenerImpl
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.PicturesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
@@ -100,6 +95,7 @@ class PicturesFragment : Fragment() {
         progressBar = view.findViewById(R.id.pictures_progress)
         emptyListTv = view.findViewById(R.id.pictures_empty_tv)
         swipeRefreshLayout = view.findViewById(R.id.images_swipe_refresh)
+        swipeRefreshLayout.setColorSchemeResources(R.color.teal_200)
         floatingRefreshBtn = view.findViewById(R.id.pictures_floating_refresh_btn)
     }
 
@@ -149,13 +145,6 @@ class PicturesFragment : Fragment() {
             picturesRecyclerView.layoutManager = GridLayoutManager(view.context, 3)
         }
 
-        picturesRecyclerView.adapter = PicturesAdapter(object : ItemClickListener {
-            override fun onItemCLick(holder: PictureViewHolder, item: PictureItem) {
-                val intent = Intent(activity, PictureActivity::class.java).apply {
-                    putExtra(IMAGE_ITEM, item)
-                }
-                startActivity(intent)
-            }
-        })
+        picturesRecyclerView.adapter = PicturesAdapter(ItemClickListenerImpl(activity))
     }
 }

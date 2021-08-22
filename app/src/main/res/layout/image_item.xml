@@ -5,42 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="200dp">
 
-    <ImageView
-        android:id="@+id/iv_item"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        app:cardCornerRadius="10dp">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/item_border_width"
-        android:background="@drawable/gradient_up"
-        app:layout_constraintEnd_toEndOf="@+id/iv_item"
-        app:layout_constraintStart_toStartOf="@+id/iv_item"
-        app:layout_constraintTop_toTopOf="@+id/iv_item" />
+        <ImageView
+            android:id="@+id/iv_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/item_border_width"
-        android:background="@drawable/gradient_bottom"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_item"
-        app:layout_constraintEnd_toEndOf="@+id/iv_item"
-        app:layout_constraintStart_toStartOf="@+id/iv_item" />
-
-    <View
-        android:layout_width="@dimen/item_border_width"
-        android:layout_height="0dp"
-        android:background="@drawable/gradient_left"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_item"
-        app:layout_constraintStart_toStartOf="@+id/iv_item"
-        app:layout_constraintTop_toTopOf="@+id/iv_item" />
-
-    <View
-        android:layout_width="@dimen/item_border_width"
-        android:layout_height="0dp"
-        android:background="@drawable/gradient_right"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_item"
-        app:layout_constraintEnd_toEndOf="@+id/iv_item"
-        app:layout_constraintTop_toTopOf="@+id/iv_item" />
-
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

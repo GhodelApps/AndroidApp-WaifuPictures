@@ -1,6 +1,5 @@
 package com.vkochenkov.waifupictures.presentation.fragment
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,12 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.db.DbState
-import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.presentation.activity.PictureActivity
-import com.vkochenkov.waifupictures.presentation.adapter.PictureViewHolder
 import com.vkochenkov.waifupictures.presentation.adapter.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListenerImpl
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.FavouritesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
@@ -118,13 +114,6 @@ class FavouritesFragment : Fragment() {
         } else {
             favouritesRecyclerView.layoutManager = GridLayoutManager(view.context, 3)
         }
-        favouritesRecyclerView.adapter = PicturesAdapter(object : ItemClickListener {
-            override fun onItemCLick(holder: PictureViewHolder, item: PictureItem) {
-                val intent = Intent(activity, PictureActivity::class.java).apply {
-                    putExtra(App.IMAGE_ITEM, item)
-                }
-                startActivity(intent)
-            }
-        })
+        favouritesRecyclerView.adapter = PicturesAdapter(ItemClickListenerImpl(activity))
     }
 }
