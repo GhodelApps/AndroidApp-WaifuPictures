@@ -14,24 +14,8 @@
         app:drawableLeftCompat="@drawable/ic_baseline_photo_size_select_large_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/sheet_info_user"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="1208*345" />
-
-    <TextView
-        android:id="@+id/sheet_info_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/main_margin"
-        android:drawablePadding="4dp"
-        android:ellipsize="end"
-        android:maxWidth="150dp"
-        android:maxLines="1"
-        app:drawableLeftCompat="@drawable/ic_baseline_person_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/sheet_info_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="\@Oksya_toolsdddddddddd" />
+        tools:text="1208*345" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

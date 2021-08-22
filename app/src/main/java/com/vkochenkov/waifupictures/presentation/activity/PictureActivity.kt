@@ -104,7 +104,6 @@ class PictureActivity : AppCompatActivity() {
             if (BitmapStorage.bitmapImage!=null) {
                 infoBottomSheetDialog.imageSizeInfo = "${BitmapStorage.bitmapImage!!.width}*${BitmapStorage.bitmapImage!!.height}"
             }
-           // infoBottomSheetDialog.userName = item.userName
             infoBottomSheetDialog.show(supportFragmentManager, "InfoBottomSheetDialog")
         }
         shareBtn.setOnClickListener {
