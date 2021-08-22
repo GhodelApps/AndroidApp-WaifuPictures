@@ -15,6 +15,6 @@ interface ApiService {
     fun getAllImages(
         @Path("type") type: String,
         @Path("category") category: String,
-        @Body obj: Object = Object()
+        @Body body: ApiRequest?
     ): Single<ApiResponse>
 }

@@ -12,8 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:src="@drawable/ic_baseline_refresh_24"
+            android:id="@+id/pictures_floating_refresh_btn"
+            android:layout_margin="@dimen/main_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <TextView
-            android:id="@+id/images_empty_tv"
+            android:id="@+id/pictures_empty_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/main_margin"
@@ -28,7 +37,7 @@
             tools:text="@string/empty_images_text" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/images_recycler"
+            android:id="@+id/pictures_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
-            android:id="@+id/images_progress"
+            android:id="@+id/pictures_progress"
             android:layout_width="@dimen/big_view_size"
             android:layout_height="@dimen/big_view_size"
             android:visibility="invisible"

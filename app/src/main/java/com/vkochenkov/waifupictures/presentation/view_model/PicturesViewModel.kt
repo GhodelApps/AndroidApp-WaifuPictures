@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.waifupictures.data.Repository
+import com.vkochenkov.waifupictures.data.api.ApiRequest
 import com.vkochenkov.waifupictures.data.api.NetworkState
 import com.vkochenkov.waifupictures.data.api.ApiResponse
+import com.vkochenkov.waifupictures.data.api.NetworkStorage
 import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.data.model.Mapper
 import com.vkochenkov.waifupictures.presentation.utils.NetworkChecker
@@ -44,6 +46,7 @@ class PicturesViewModel @Inject constructor(
         override fun onSuccess(r: ApiResponse) {
             _networkState.postValue(NetworkState.SUCCESS)
             _itemsList.postValue(Mapper.map(r))
+            NetworkStorage.excludeRequest = ApiRequest(r.files)
         }
 
         override fun onError(e: Throwable) {
@@ -52,9 +55,8 @@ class PicturesViewModel @Inject constructor(
     }
 
     private fun makeApiCall(type: String, category: String) {
-    //    Log.d("LOGGG", "current page is: ${PaggingStorage.currentPage}")
         if (networkChecker.isOnline()) {
-            repository.getPicturesFromApi(type, category).subscribe(getImagesFromApiRxObserver())
+            repository.getPicturesFromApi(type, category, NetworkStorage.excludeRequest).subscribe(getImagesFromApiRxObserver())
         } else {
             _networkState.postValue(NetworkState.NO_INTERNET_CONNECTION)
         }

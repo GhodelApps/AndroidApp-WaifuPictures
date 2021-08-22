@@ -9,7 +9,7 @@
         android:id="@+id/navigation_images"
         android:name="com.vkochenkov.waifupictures.presentation.fragment.PicturesFragment"
         android:label="@string/title_images"
-        tools:layout="@layout/fragment_images" />
+        tools:layout="@layout/fragment_pictures" />
 
     <fragment
         android:id="@+id/navigation_favourites"

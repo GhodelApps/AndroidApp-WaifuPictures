@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.api.NetworkState
 import com.vkochenkov.waifupictures.data.model.PictureItem
@@ -38,6 +39,7 @@ class PicturesFragment : Fragment() {
     private lateinit var emptyListTv: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var floatingRefreshBtn: FloatingActionButton
 
     private val picturesViewModel: PicturesViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(PicturesViewModel::class.java)
@@ -56,7 +58,7 @@ class PicturesFragment : Fragment() {
 
         picturesViewModel.onCreateView()
 
-        val root = inflater.inflate(R.layout.fragment_images, container, false)
+        val root = inflater.inflate(R.layout.fragment_pictures, container, false)
         initViews(root)
         initRecyclerView(root)
         initLiveDataObservers()
@@ -78,17 +80,27 @@ class PicturesFragment : Fragment() {
     }
 
     private fun setListeners() {
-        swipeRefreshLayout.setOnRefreshListener {
+
+        fun refresh() {
             picturesViewModel.onSwipeRefresh()
             (picturesRecyclerView.adapter as PicturesAdapter).notifyDataSetChanged()
+        }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            refresh()
             swipeRefreshLayout.isRefreshing = false
+        }
+        floatingRefreshBtn.setOnClickListener{
+            refresh()
+            picturesRecyclerView.scrollToPosition(0)
         }
     }
 
     private fun initViews(view: View) {
-        progressBar = view.findViewById(R.id.images_progress)
-        emptyListTv = view.findViewById(R.id.images_empty_tv)
+        progressBar = view.findViewById(R.id.pictures_progress)
+        emptyListTv = view.findViewById(R.id.pictures_empty_tv)
         swipeRefreshLayout = view.findViewById(R.id.images_swipe_refresh)
+        floatingRefreshBtn = view.findViewById(R.id.pictures_floating_refresh_btn)
     }
 
     private fun initLiveDataObservers() {
@@ -129,7 +141,7 @@ class PicturesFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
-        picturesRecyclerView = view.findViewById(R.id.images_recycler)
+        picturesRecyclerView = view.findViewById(R.id.pictures_recycler)
 
         if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             picturesRecyclerView.layoutManager = GridLayoutManager(view.context, 2)

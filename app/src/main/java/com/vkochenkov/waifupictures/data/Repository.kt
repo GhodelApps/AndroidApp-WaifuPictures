@@ -1,5 +1,6 @@
 package com.vkochenkov.waifupictures.data
 
+import com.vkochenkov.waifupictures.data.api.ApiRequest
 import com.vkochenkov.waifupictures.data.api.ApiService
 import com.vkochenkov.waifupictures.data.db.FavouriteImagesDao
 import com.vkochenkov.waifupictures.data.model.PictureItem
@@ -12,8 +13,8 @@ class Repository @Inject constructor(
     private val dao: FavouriteImagesDao
 ) {
 
-    fun getPicturesFromApi(type: String, category: String) =
-        apiService.getAllImages(type, category)
+    fun getPicturesFromApi(type: String, category: String, body: ApiRequest?) =
+        apiService.getAllImages(type, category, body)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
