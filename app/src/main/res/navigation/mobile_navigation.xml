@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_images">
+
+    <fragment
+        android:id="@+id/navigation_images"
+        android:name="com.vkochenkov.waifupictures.presentation.fragment.PicturesFragment"
+        android:label="@string/title_images"
+        tools:layout="@layout/fragment_images" />
+
+    <fragment
+        android:id="@+id/navigation_favourites"
+        android:name="com.vkochenkov.waifupictures.presentation.fragment.FavouritesFragment"
+        android:label="@string/title_favourites"
+        tools:layout="@layout/fragment_favourites" />
+
+    <fragment
+        android:id="@+id/navigation_app_info"
+        android:name="com.vkochenkov.waifupictures.presentation.fragment.AppInfoFragment"
+        android:label="@string/title_app_info"
+        tools:layout="@layout/fragment_app_info" />
+</navigation>

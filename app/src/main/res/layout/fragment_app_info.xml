@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragment.AppInfoFragment">
+
+    <ImageView
+        android:id="@+id/app_info_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_info_pict"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/app_info_about_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_up"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingTop="@dimen/half_margin"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="@dimen/double_main_margin"
+        android:text="@string/app_info_str"
+        android:textAlignment="center"
+        android:textSize="@dimen/main_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/app_info_img" />
+
+    <TextView
+        android:id="@+id/app_info_created_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_bottom"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingTop="@dimen/double_main_margin"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="@dimen/half_margin"
+        android:text="@string/app_info_created_str"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/app_info_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

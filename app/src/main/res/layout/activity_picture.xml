@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activity.PictureActivity">
+
+    <TextView
+        android:id="@+id/tv_empty_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/main_margin"
+        android:text="@string/empty_images_text"
+        android:textAlignment="center"
+        android:textSize="@dimen/error_text_size"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/empty_images_text" />
+
+    <ProgressBar
+        android:id="@+id/progress_detail"
+        android:layout_width="@dimen/big_view_size"
+        android:layout_height="@dimen/big_view_size"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/iv_full_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_info_btn"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
+        android:layout_margin="@dimen/main_margin"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_info_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_share_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_share_btn"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
+        android:layout_margin="@dimen/main_margin"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_like_btn"
+        app:layout_constraintStart_toEndOf="@id/image_info_btn" />
+
+    <ImageView
+        android:id="@+id/image_like_btn"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
+        android:layout_margin="@dimen/main_margin"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_red_favorite_border_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_wallpaper_btn"
+        app:layout_constraintStart_toEndOf="@id/image_share_btn" />
+
+    <ImageView
+        android:id="@+id/image_wallpaper_btn"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
+        android:layout_margin="@dimen/main_margin"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_wallpaper_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_download_btn"
+        app:layout_constraintStart_toEndOf="@id/image_like_btn" />
+
+    <ImageView
+        android:id="@+id/image_download_btn"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
+        android:layout_margin="@dimen/main_margin"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_download_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_wallpaper_btn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
