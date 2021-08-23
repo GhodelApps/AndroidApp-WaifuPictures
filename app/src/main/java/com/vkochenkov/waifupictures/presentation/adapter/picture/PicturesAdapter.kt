@@ -2,6 +2,7 @@ package com.vkochenkov.waifupictures.presentation.adapter.picture
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.PictureItem
@@ -19,7 +20,11 @@ class PicturesAdapter(private val pictureItemClickListener: ItemClickListener<Pi
     override fun onBindViewHolder(holder: PictureViewHolder, position: Int) {
         val pictureItem = itemsList[position]
         holder.bind(pictureItem)
-        holder.itemView.setOnClickListener { pictureItemClickListener.onItemCLick(holder, pictureItem) }
+        holder.itemView.setOnClickListener {
+            val animationWhenPressed = AnimationUtils.loadAnimation(it.context, R.anim.decreases_when_pressed)
+            holder.itemView.startAnimation(animationWhenPressed)
+            pictureItemClickListener.onItemCLick(holder, pictureItem)
+        }
     }
 
     override fun getItemCount(): Int {

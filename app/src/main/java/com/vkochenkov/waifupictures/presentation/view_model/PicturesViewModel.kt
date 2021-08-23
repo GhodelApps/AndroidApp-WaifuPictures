@@ -66,7 +66,7 @@ class PicturesViewModel @Inject constructor(
         if (networkChecker.isOnline()) {
             repository.getPicturesFromApi(
                 NetworkStorage.defaultType,
-                NetworkStorage.lastChangedCategory.text,
+                NetworkStorage.lastChangedCategory.text.toLowerCase(),
                 NetworkStorage.excludeRequest
             ).subscribe(getImagesFromApiRxObserver())
         } else {

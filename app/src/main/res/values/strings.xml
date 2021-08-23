@@ -21,5 +21,5 @@
     <string name="downloading_success_str">Pictures has been saved</string>
     <string name="app_info_str">Welcome to this app! Here you can view hundreds of pictures. Also, you can choose your own wallpaper, share it with friends and just enjoy beautiful ladies.</string>
     <string name="app_info_created_str">© App created by Kochenkov. \nAll pictures provided by waifu-api</string>
-    <string name="category_label_str">Current category:</string>
+    <string name="category_label_str">Choose category</string>
 </resources>

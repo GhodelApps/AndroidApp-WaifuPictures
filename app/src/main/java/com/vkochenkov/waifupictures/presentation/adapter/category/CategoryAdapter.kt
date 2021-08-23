@@ -2,6 +2,7 @@ package com.vkochenkov.waifupictures.presentation.adapter.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.Category
@@ -19,7 +20,11 @@ class CategoryAdapter(private val categoryItemClickListener: ItemClickListener<C
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val categoryItem = itemsList[position]
         holder.bind(categoryItem)
-        holder.itemView.setOnClickListener { categoryItemClickListener.onItemCLick(holder, categoryItem) }
+        holder.itemView.setOnClickListener {
+            val animationWhenPressed = AnimationUtils.loadAnimation(it.context, R.anim.decreases_when_pressed)
+            holder.itemView.startAnimation(animationWhenPressed)
+            categoryItemClickListener.onItemCLick(holder, categoryItem)
+        }
     }
 
     override fun getItemCount(): Int {

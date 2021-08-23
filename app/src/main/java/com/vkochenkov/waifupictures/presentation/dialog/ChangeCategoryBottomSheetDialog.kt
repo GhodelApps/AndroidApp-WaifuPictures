@@ -1,11 +1,10 @@
 package com.vkochenkov.waifupictures.presentation.dialog
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,8 +29,6 @@ class ChangeCategoryBottomSheetDialog : BottomSheetDialogFragment() {
         ViewModelProvider(requireActivity(), viewModelFactory).get(PicturesViewModel::class.java)
     }
 
-    lateinit var currentCategoryTv: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
@@ -43,8 +40,6 @@ class ChangeCategoryBottomSheetDialog : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.bottom_sheet_category, container, false)
-        currentCategoryTv = root.findViewById(R.id.category_current_tv)
-        currentCategoryTv.text = makeCategoryText(NetworkStorage.lastChangedCategory)
         initRecyclerView(root)
         return root
     }
@@ -56,13 +51,10 @@ class ChangeCategoryBottomSheetDialog : BottomSheetDialogFragment() {
             CategoryAdapter(object : ItemClickListener<CategoryViewHolder, Category> {
                 override fun onItemCLick(holder: CategoryViewHolder, item: Category) {
                     picturesViewModel.onCategorySelected(item)
-                    currentCategoryTv.text = makeCategoryText(item)
+                    (this@ChangeCategoryBottomSheetDialog.activity as AppCompatActivity).supportActionBar?.title = NetworkStorage.lastChangedCategory.text
                     this@ChangeCategoryBottomSheetDialog.dismiss()
                 }
             })
-    }
 
-    @SuppressLint("SetTextI18n")
-    private fun makeCategoryText(category: Category) =
-        "${requireActivity().getText(R.string.category_label_str)} ${category.text}"
+    }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.api.NetworkState
+import com.vkochenkov.waifupictures.data.api.NetworkStorage
 import com.vkochenkov.waifupictures.di.App
 import com.vkochenkov.waifupictures.presentation.adapter.picture.PicturesAdapter
 import com.vkochenkov.waifupictures.presentation.adapter.picture.PictureItemClickListenerImpl
@@ -61,6 +63,11 @@ class PicturesFragment : Fragment() {
         setListeners()
 
         return root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as AppCompatActivity).supportActionBar?.title = NetworkStorage.lastChangedCategory.text
     }
 
     override fun onPause() {
