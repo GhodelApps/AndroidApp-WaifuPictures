@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.PictureItem
 
-class PicturesAdapter(private val itemClickListener: ItemClickListener): RecyclerView.Adapter<PictureViewHolder>() {
+class PicturesAdapter(private val pictureItemClickListener: PictureItemClickListener): RecyclerView.Adapter<PictureViewHolder>() {
 
     private var itemsList: List<PictureItem> = ArrayList()
 
@@ -18,7 +18,7 @@ class PicturesAdapter(private val itemClickListener: ItemClickListener): Recycle
     override fun onBindViewHolder(holder: PictureViewHolder, position: Int) {
         val pictureItem = itemsList[position]
         holder.bind(pictureItem)
-        holder.itemView.setOnClickListener { itemClickListener.onItemCLick(holder, pictureItem) }
+        holder.itemView.setOnClickListener { pictureItemClickListener.onItemCLick(holder, pictureItem) }
     }
 
     override fun getItemCount(): Int {

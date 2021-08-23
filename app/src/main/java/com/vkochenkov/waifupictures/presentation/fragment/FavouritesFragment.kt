@@ -16,7 +16,7 @@ import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.db.DbState
 import com.vkochenkov.waifupictures.di.App
 import com.vkochenkov.waifupictures.presentation.adapter.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.PictureItemClickListenerImpl
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.FavouritesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
@@ -114,6 +114,6 @@ class FavouritesFragment : Fragment() {
         } else {
             favouritesRecyclerView.layoutManager = GridLayoutManager(view.context, 3)
         }
-        favouritesRecyclerView.adapter = PicturesAdapter(ItemClickListenerImpl(activity))
+        favouritesRecyclerView.adapter = PicturesAdapter(PictureItemClickListenerImpl(activity))
     }
 }

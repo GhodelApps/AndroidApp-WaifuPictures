@@ -18,7 +18,8 @@ import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.api.NetworkState
 import com.vkochenkov.waifupictures.di.App
 import com.vkochenkov.waifupictures.presentation.adapter.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.PictureItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.dialog.ChangeCategoryBottomSheetDialog
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.PicturesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
@@ -34,7 +35,7 @@ class PicturesFragment : Fragment() {
     private lateinit var emptyListTv: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var floatingRefreshBtn: FloatingActionButton
+    private lateinit var floatingChangeBtn: FloatingActionButton
 
     private val picturesViewModel: PicturesViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(PicturesViewModel::class.java)
@@ -75,19 +76,15 @@ class PicturesFragment : Fragment() {
     }
 
     private fun setListeners() {
-
-        fun refresh() {
+        swipeRefreshLayout.setOnRefreshListener {
             picturesViewModel.onSwipeRefresh()
             (picturesRecyclerView.adapter as PicturesAdapter).notifyDataSetChanged()
-        }
-
-        swipeRefreshLayout.setOnRefreshListener {
-            refresh()
             swipeRefreshLayout.isRefreshing = false
         }
-        floatingRefreshBtn.setOnClickListener{
-            refresh()
-            picturesRecyclerView.scrollToPosition(0)
+
+        floatingChangeBtn.setOnClickListener{
+            val changeCategoryBottomSheetDialog = ChangeCategoryBottomSheetDialog()
+            changeCategoryBottomSheetDialog.show(requireActivity().supportFragmentManager, "ChangeCategoryBottomSheetDialog")
         }
     }
 
@@ -96,7 +93,7 @@ class PicturesFragment : Fragment() {
         emptyListTv = view.findViewById(R.id.pictures_empty_tv)
         swipeRefreshLayout = view.findViewById(R.id.images_swipe_refresh)
         swipeRefreshLayout.setColorSchemeResources(R.color.teal_200)
-        floatingRefreshBtn = view.findViewById(R.id.pictures_floating_refresh_btn)
+        floatingChangeBtn = view.findViewById(R.id.pictures_floating_change_btn)
     }
 
     private fun initLiveDataObservers() {
@@ -145,6 +142,6 @@ class PicturesFragment : Fragment() {
             picturesRecyclerView.layoutManager = GridLayoutManager(view.context, 3)
         }
 
-        picturesRecyclerView.adapter = PicturesAdapter(ItemClickListenerImpl(activity))
+        picturesRecyclerView.adapter = PicturesAdapter(PictureItemClickListenerImpl(activity))
     }
 }

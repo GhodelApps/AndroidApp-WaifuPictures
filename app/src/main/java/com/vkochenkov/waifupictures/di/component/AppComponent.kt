@@ -1,12 +1,12 @@
 package com.vkochenkov.waifupictures.di.component
 
-
 import com.vkochenkov.waifupictures.data.Repository
 import com.vkochenkov.waifupictures.di.module.AppModule
 import com.vkochenkov.waifupictures.di.module.DatabaseModule
 import com.vkochenkov.waifupictures.di.module.NetworkModule
 import com.vkochenkov.waifupictures.presentation.activity.PictureActivity
 import com.vkochenkov.waifupictures.presentation.activity.MainActivity
+import com.vkochenkov.waifupictures.presentation.dialog.ChangeCategoryBottomSheetDialog
 import com.vkochenkov.waifupictures.presentation.fragment.AppInfoFragment
 import com.vkochenkov.waifupictures.presentation.fragment.FavouritesFragment
 import com.vkochenkov.waifupictures.presentation.fragment.PicturesFragment
@@ -24,6 +24,7 @@ interface AppComponent {
     fun inject(fragment: PicturesFragment)
     fun inject(fragment: FavouritesFragment)
     fun inject(fragment: AppInfoFragment)
+    fun inject(fragment: ChangeCategoryBottomSheetDialog)
 
     fun inject(repository: Repository)
     fun inject(imageLoader: ImageLoader)

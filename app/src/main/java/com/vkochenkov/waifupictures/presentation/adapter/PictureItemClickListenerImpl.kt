@@ -8,8 +8,7 @@ import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.di.App
 import com.vkochenkov.waifupictures.presentation.activity.PictureActivity
 
-
-class ItemClickListenerImpl(private val activity: FragmentActivity?) : ItemClickListener {
+class PictureItemClickListenerImpl(private val activity: FragmentActivity?) : PictureItemClickListener {
 
     override fun onItemCLick(holder: PictureViewHolder, item: PictureItem) {
 

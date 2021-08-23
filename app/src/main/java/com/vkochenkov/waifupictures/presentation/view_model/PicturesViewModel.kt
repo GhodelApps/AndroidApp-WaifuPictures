@@ -1,5 +1,6 @@
 package com.vkochenkov.waifupictures.presentation.view_model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.vkochenkov.waifupictures.data.api.dto.ApiRequest
 import com.vkochenkov.waifupictures.data.api.NetworkState
 import com.vkochenkov.waifupictures.data.api.dto.ApiResponse
 import com.vkochenkov.waifupictures.data.api.NetworkStorage
+import com.vkochenkov.waifupictures.data.model.Category
 import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.data.model.Mapper
 import com.vkochenkov.waifupictures.presentation.utils.NetworkChecker
@@ -29,12 +31,14 @@ class PicturesViewModel @Inject constructor(
     var firstFirstVisibleRecyclerPosition: Int? = null
 
     fun onCreateView() {
+        //todo
         if (_itemsList.value == null) {
             makeApiCall("sfw", "waifu")
         }
     }
 
     fun onSwipeRefresh() {
+        //todo
         makeApiCall("sfw", "waifu")
     }
 
@@ -60,5 +64,10 @@ class PicturesViewModel @Inject constructor(
         } else {
             _networkState.postValue(NetworkState.NO_INTERNET_CONNECTION)
         }
+    }
+
+    fun onCategorySelected(category: Category) {
+        //todo
+        Log.d("VLADDDD", category.text)
     }
 }

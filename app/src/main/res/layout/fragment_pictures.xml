@@ -13,8 +13,8 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:src="@drawable/ic_baseline_refresh_24"
-            android:id="@+id/pictures_floating_refresh_btn"
+            android:src="@drawable/ic_baseline_category_24"
+            android:id="@+id/pictures_floating_change_btn"
             android:layout_margin="@dimen/main_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
