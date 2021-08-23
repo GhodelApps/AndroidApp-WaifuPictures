@@ -17,8 +17,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.api.NetworkState
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.presentation.adapter.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.PictureItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.picture.PicturesAdapter
+import com.vkochenkov.waifupictures.presentation.adapter.picture.PictureItemClickListenerImpl
 import com.vkochenkov.waifupictures.presentation.dialog.ChangeCategoryBottomSheetDialog
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.PicturesViewModel
@@ -68,13 +68,6 @@ class PicturesFragment : Fragment() {
         picturesViewModel.firstFirstVisibleRecyclerPosition = (picturesRecyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (picturesViewModel.firstFirstVisibleRecyclerPosition != null) {
-            (picturesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(picturesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
-        }
-    }
-
     private fun setListeners() {
         swipeRefreshLayout.setOnRefreshListener {
             picturesViewModel.onSwipeRefresh()
@@ -119,9 +112,14 @@ class PicturesFragment : Fragment() {
                 }
             }
         })
+
         picturesViewModel.itemsList.observe(viewLifecycleOwner, Observer {
             (picturesRecyclerView.adapter as PicturesAdapter).setItemsList(it)
             (picturesRecyclerView.adapter as PicturesAdapter).notifyDataSetChanged()
+
+            if (picturesViewModel.firstFirstVisibleRecyclerPosition != null) {
+                (picturesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(picturesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
+            }
         })
     }
 

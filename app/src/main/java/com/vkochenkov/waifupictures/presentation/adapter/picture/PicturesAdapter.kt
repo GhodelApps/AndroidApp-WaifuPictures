@@ -1,12 +1,13 @@
-package com.vkochenkov.waifupictures.presentation.adapter
+package com.vkochenkov.waifupictures.presentation.adapter.picture
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.PictureItem
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
 
-class PicturesAdapter(private val pictureItemClickListener: PictureItemClickListener): RecyclerView.Adapter<PictureViewHolder>() {
+class PicturesAdapter(private val pictureItemClickListener: ItemClickListener<PictureViewHolder, PictureItem>): RecyclerView.Adapter<PictureViewHolder>() {
 
     private var itemsList: List<PictureItem> = ArrayList()
 

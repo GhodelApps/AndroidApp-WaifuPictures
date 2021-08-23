@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.presentation.adapter
+package com.vkochenkov.waifupictures.presentation.adapter.picture
 
 import android.content.Intent
 import android.view.animation.AnimationUtils
@@ -7,8 +7,10 @@ import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.di.App
 import com.vkochenkov.waifupictures.presentation.activity.PictureActivity
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
 
-class PictureItemClickListenerImpl(private val activity: FragmentActivity?) : PictureItemClickListener {
+class PictureItemClickListenerImpl(private val activity: FragmentActivity?) :
+    ItemClickListener<PictureViewHolder, PictureItem> {
 
     override fun onItemCLick(holder: PictureViewHolder, item: PictureItem) {
 

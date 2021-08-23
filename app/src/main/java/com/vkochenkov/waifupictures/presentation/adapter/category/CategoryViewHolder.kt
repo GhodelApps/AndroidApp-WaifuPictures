@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.presentation.adapter
+package com.vkochenkov.waifupictures.presentation.adapter.category
 
 import android.view.View
 import android.widget.TextView

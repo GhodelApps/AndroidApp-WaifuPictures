@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.db.DbState
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.presentation.adapter.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.PictureItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.picture.PicturesAdapter
+import com.vkochenkov.waifupictures.presentation.adapter.picture.PictureItemClickListenerImpl
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.FavouritesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
@@ -63,13 +63,6 @@ class FavouritesFragment : Fragment() {
         favouritesViewModel.firstFirstVisibleRecyclerPosition = (favouritesRecyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (favouritesViewModel.firstFirstVisibleRecyclerPosition != null) {
-            (favouritesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(favouritesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
-        }
-    }
-
     private fun initViews(view: View) {
         progressBar = view.findViewById(R.id.favourites_progress)
         emptyListTv = view.findViewById(R.id.favourites_empty_tv)
@@ -92,9 +85,15 @@ class FavouritesFragment : Fragment() {
                 }
             }
         })
+
         favouritesViewModel.favouritesList.observe(viewLifecycleOwner, Observer {
             (favouritesRecyclerView.adapter as PicturesAdapter).setItemsList(it)
             (favouritesRecyclerView.adapter as PicturesAdapter).notifyDataSetChanged()
+
+            if (favouritesViewModel.firstFirstVisibleRecyclerPosition != null) {
+                (favouritesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(favouritesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
+            }
+
             checkItemsListSize()
         })
     }

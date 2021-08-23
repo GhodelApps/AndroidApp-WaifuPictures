@@ -1,17 +1,16 @@
 package com.vkochenkov.waifupictures.presentation.view_model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.waifupictures.data.Repository
-import com.vkochenkov.waifupictures.data.api.dto.ApiRequest
 import com.vkochenkov.waifupictures.data.api.NetworkState
-import com.vkochenkov.waifupictures.data.api.dto.ApiResponse
 import com.vkochenkov.waifupictures.data.api.NetworkStorage
+import com.vkochenkov.waifupictures.data.api.dto.ApiRequest
+import com.vkochenkov.waifupictures.data.api.dto.ApiResponse
 import com.vkochenkov.waifupictures.data.model.Category
-import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.data.model.Mapper
+import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.presentation.utils.NetworkChecker
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
@@ -31,15 +30,18 @@ class PicturesViewModel @Inject constructor(
     var firstFirstVisibleRecyclerPosition: Int? = null
 
     fun onCreateView() {
-        //todo
         if (_itemsList.value == null) {
-            makeApiCall("sfw", "waifu")
+            makeApiCall()
         }
     }
 
     fun onSwipeRefresh() {
-        //todo
-        makeApiCall("sfw", "waifu")
+        makeApiCall()
+    }
+
+    fun onCategorySelected(category: Category) {
+        NetworkStorage.lastChangedCategory = category
+        makeApiCall()
     }
 
     private fun getImagesFromApiRxObserver() = object : SingleObserver<ApiResponse> {
@@ -58,16 +60,17 @@ class PicturesViewModel @Inject constructor(
         }
     }
 
-    private fun makeApiCall(type: String, category: String) {
+    private fun makeApiCall() {
+        firstFirstVisibleRecyclerPosition = 0
+
         if (networkChecker.isOnline()) {
-            repository.getPicturesFromApi(type, category, NetworkStorage.excludeRequest).subscribe(getImagesFromApiRxObserver())
+            repository.getPicturesFromApi(
+                NetworkStorage.defaultType,
+                NetworkStorage.lastChangedCategory.text,
+                NetworkStorage.excludeRequest
+            ).subscribe(getImagesFromApiRxObserver())
         } else {
             _networkState.postValue(NetworkState.NO_INTERNET_CONNECTION)
         }
-    }
-
-    fun onCategorySelected(category: Category) {
-        //todo
-        Log.d("VLADDDD", category.text)
     }
 }

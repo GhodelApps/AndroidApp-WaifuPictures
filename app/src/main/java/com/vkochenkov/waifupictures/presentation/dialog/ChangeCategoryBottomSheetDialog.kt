@@ -11,9 +11,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.Category
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.presentation.adapter.CategoryAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.CategoryItemClickListener
-import com.vkochenkov.waifupictures.presentation.adapter.CategoryViewHolder
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
+import com.vkochenkov.waifupictures.presentation.adapter.category.CategoryAdapter
+import com.vkochenkov.waifupictures.presentation.adapter.category.CategoryViewHolder
 import com.vkochenkov.waifupictures.presentation.view_model.PicturesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
@@ -22,8 +22,6 @@ class ChangeCategoryBottomSheetDialog: BottomSheetDialogFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
-    lateinit var categoryRecycler: RecyclerView
 
     private val picturesViewModel: PicturesViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(PicturesViewModel::class.java)
@@ -40,15 +38,18 @@ class ChangeCategoryBottomSheetDialog: BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.bottom_sheet_category, container, false)
+        initRecyclerView(root)
+        return root
+    }
 
-        categoryRecycler = root.findViewById(R.id.categories_recycler)
+    private fun initRecyclerView(root: View) {
+        val categoryRecycler = root.findViewById<RecyclerView>(R.id.categories_recycler)
         categoryRecycler.layoutManager = LinearLayoutManager(root.context)
-        categoryRecycler.adapter = CategoryAdapter(object : CategoryItemClickListener{
+        categoryRecycler.adapter = CategoryAdapter(object : ItemClickListener<CategoryViewHolder, Category> {
             override fun onItemCLick(holder: CategoryViewHolder, item: Category) {
                 picturesViewModel.onCategorySelected(item)
+                this@ChangeCategoryBottomSheetDialog.dismiss()
             }
         })
-
-        return root
     }
 }

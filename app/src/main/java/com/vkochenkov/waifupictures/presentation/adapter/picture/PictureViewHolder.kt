@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.presentation.adapter
+package com.vkochenkov.waifupictures.presentation.adapter.picture
 
 import android.view.View
 import android.widget.ImageView

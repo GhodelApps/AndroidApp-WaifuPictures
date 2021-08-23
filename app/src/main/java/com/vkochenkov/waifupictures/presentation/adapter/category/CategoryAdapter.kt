@@ -1,12 +1,13 @@
-package com.vkochenkov.waifupictures.presentation.adapter
+package com.vkochenkov.waifupictures.presentation.adapter.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.Category
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
 
-class CategoryAdapter(private val categoryItemClickListener: CategoryItemClickListener): RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(private val categoryItemClickListener: ItemClickListener<CategoryViewHolder, Category>): RecyclerView.Adapter<CategoryViewHolder>() {
 
     private var itemsList: Array<Category> = Category.values()
 
