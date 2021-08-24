@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:textColor="?attr/colorOnSecondary"
-        android:background="?attr/colorSecondaryVariant"
         android:id="@+id/category_current_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/half_margin"
         android:paddingBottom="@dimen/half_margin"
-        android:paddingStart="@dimen/main_margin"
-        android:paddingEnd="@dimen/main_margin"
         android:text="@string/category_label_str"
-        android:textSize="@dimen/main_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAlignment="center"
+        android:textSize="@dimen/main_text_size" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginEnd="@dimen/main_margin"
         android:id="@+id/categories_recycler"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_current_tv"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
         tools:listitem="@layout/category_item" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:background="@drawable/gradient_up_dark"
-        app:layout_constraintTop_toBottomOf="@id/category_current_tv"/>
+</LinearLayout>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>

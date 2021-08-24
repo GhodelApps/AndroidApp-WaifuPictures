@@ -57,6 +57,7 @@ class PicturesViewModel @Inject constructor(
 
         override fun onError(e: Throwable) {
             _networkState.postValue(NetworkState.LOADING_ERROR)
+            NetworkStorage.excludeRequest = ApiRequest(ArrayList())
         }
     }
 
