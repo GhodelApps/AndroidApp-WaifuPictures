@@ -21,8 +21,6 @@ class CategoryAdapter(private val categoryItemClickListener: ItemClickListener<C
         val categoryItem = itemsList[position]
         holder.bind(categoryItem)
         holder.itemView.setOnClickListener {
-            val animationWhenPressed = AnimationUtils.loadAnimation(it.context, R.anim.decreases_when_pressed)
-            holder.itemView.startAnimation(animationWhenPressed)
             categoryItemClickListener.onItemCLick(holder, categoryItem)
         }
     }
