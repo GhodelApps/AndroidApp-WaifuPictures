@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.presentation.adapter.picture
+package com.vkochenkov.waifupictures.presentation.adapter.pictures
 
 import android.view.View
 import android.widget.ImageView
@@ -8,7 +8,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.PictureItem
-
 
 class PictureViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val imageView: ImageView = itemView.findViewById(R.id.iv_item)

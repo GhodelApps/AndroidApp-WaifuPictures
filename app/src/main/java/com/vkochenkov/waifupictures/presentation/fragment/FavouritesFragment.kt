@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.db.DbState
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.presentation.adapter.picture.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.picture.PictureItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.pictures.FavouritesAdapter
+import com.vkochenkov.waifupictures.presentation.adapter.pictures.PicturesAdapter
+import com.vkochenkov.waifupictures.presentation.adapter.pictures.PictureItemClickListenerImpl
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.FavouritesViewModel
 import com.vkochenkov.waifupictures.presentation.view_model.ViewModelFactory
@@ -87,8 +88,8 @@ class FavouritesFragment : Fragment() {
         })
 
         favouritesViewModel.favouritesList.observe(viewLifecycleOwner, Observer {
-            (favouritesRecyclerView.adapter as PicturesAdapter).setItemsList(it)
-            (favouritesRecyclerView.adapter as PicturesAdapter).notifyDataSetChanged()
+            (favouritesRecyclerView.adapter as FavouritesAdapter).setItemsList(it)
+            (favouritesRecyclerView.adapter as FavouritesAdapter).notifyDataSetChanged()
 
             if (favouritesViewModel.firstFirstVisibleRecyclerPosition != null) {
                 (favouritesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(favouritesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
@@ -113,6 +114,7 @@ class FavouritesFragment : Fragment() {
         } else {
             favouritesRecyclerView.layoutManager = GridLayoutManager(view.context, 3)
         }
-        favouritesRecyclerView.adapter = PicturesAdapter(PictureItemClickListenerImpl(activity))
+        favouritesRecyclerView.adapter = FavouritesAdapter(
+            PictureItemClickListenerImpl(activity))
     }
 }

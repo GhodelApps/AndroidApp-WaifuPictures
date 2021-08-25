@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.presentation.adapter.picture
+package com.vkochenkov.waifupictures.presentation.adapter.pictures
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
 
-class PicturesAdapter(private val pictureItemClickListener: ItemClickListener<PictureViewHolder, PictureItem>): RecyclerView.Adapter<PictureViewHolder>() {
+class FavouritesAdapter(
+    private val pictureItemClickListener: ItemClickListener<PictureViewHolder, PictureItem>,
+) : RecyclerView.Adapter<PictureViewHolder>() {
 
     private var itemsList: List<PictureItem> = ArrayList()
 
@@ -18,13 +20,18 @@ class PicturesAdapter(private val pictureItemClickListener: ItemClickListener<Pi
     }
 
     override fun onBindViewHolder(holder: PictureViewHolder, position: Int) {
+        val animationWhenPressed = AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.decreases_when_pressed
+        )
+
         val pictureItem = itemsList[position]
         holder.bind(pictureItem)
         holder.itemView.setOnClickListener {
-            val animationWhenPressed = AnimationUtils.loadAnimation(it.context, R.anim.decreases_when_pressed)
             holder.itemView.startAnimation(animationWhenPressed)
             pictureItemClickListener.onItemCLick(holder, pictureItem)
         }
+
     }
 
     override fun getItemCount(): Int {

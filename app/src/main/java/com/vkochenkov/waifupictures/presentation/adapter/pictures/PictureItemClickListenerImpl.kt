@@ -1,4 +1,4 @@
-package com.vkochenkov.waifupictures.presentation.adapter.picture
+package com.vkochenkov.waifupictures.presentation.adapter.pictures
 
 import android.content.Intent
 import androidx.fragment.app.FragmentActivity

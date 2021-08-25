@@ -39,6 +39,10 @@ class PicturesViewModel @Inject constructor(
         makeApiCall()
     }
 
+    fun onReloadPressed() {
+        makeApiCall()
+    }
+
     fun onCategorySelected(category: Category) {
         NetworkStorage.lastChangedCategory = category
         makeApiCall()

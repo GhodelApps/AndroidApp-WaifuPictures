@@ -18,9 +18,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.vkochenkov.waifupictures.R
 import com.vkochenkov.waifupictures.data.api.NetworkState
 import com.vkochenkov.waifupictures.data.api.NetworkStorage
+import com.vkochenkov.waifupictures.data.model.PictureItem
 import com.vkochenkov.waifupictures.di.App
-import com.vkochenkov.waifupictures.presentation.adapter.picture.PicturesAdapter
-import com.vkochenkov.waifupictures.presentation.adapter.picture.PictureItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.ItemClickListener
+import com.vkochenkov.waifupictures.presentation.adapter.pictures.PicturesAdapter
+import com.vkochenkov.waifupictures.presentation.adapter.pictures.PictureItemClickListenerImpl
+import com.vkochenkov.waifupictures.presentation.adapter.pictures.ReloadViewHolder
 import com.vkochenkov.waifupictures.presentation.dialog.ChangeCategoryBottomSheetDialog
 import com.vkochenkov.waifupictures.presentation.showToast
 import com.vkochenkov.waifupictures.presentation.view_model.PicturesViewModel
@@ -147,6 +150,12 @@ class PicturesFragment : Fragment() {
             picturesRecyclerView.layoutManager = GridLayoutManager(view.context, 3)
         }
 
-        picturesRecyclerView.adapter = PicturesAdapter(PictureItemClickListenerImpl(activity))
+        picturesRecyclerView.adapter = PicturesAdapter(
+            PictureItemClickListenerImpl(activity),
+            object : ItemClickListener<ReloadViewHolder, PictureItem> {
+                override fun onItemCLick(holder: ReloadViewHolder, item: PictureItem) {
+                    picturesViewModel.onReloadPressed()
+                }
+            })
     }
 }
